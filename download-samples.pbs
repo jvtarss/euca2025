@@ -1,0 +1,66 @@
+#!/bin/bash
+#PBS -N download_sra_paralelo
+#PBS -q par16
+#PBS -l select=1:ncpus=16,walltime=04:00:00
+#PBS -j oe
+#PBS -o saida_paralelo.txt
+#PBS -m abe
+#PBS -M joao.aires1@mail.uft.edu.br
+
+source ~/miniconda3/bin/activate bioinfo
+
+echo "iniciado em: $(date)"
+
+cd "$PBS_O_WORKDIR"
+
+read -r -d '' SAMPLES << EOM
+SRP178354 SRR8432426 W-K_2
+SRP178354 SRR8432427 W-K_1
+SRP178354 SRR8432428 +W-K_2
+SRP178354 SRR8432429 +W-K_1
+SRP178354 SRR8432434 W-K_3
+SRP178354 SRR8432435 +W-K_3
+SRP458400 SRR25905137 D4
+SRP458400 SRR25905138 D3
+SRP458400 SRR25905139 D2
+SRP458400 SRR25905140 D1
+SRP458400 SRR25905141 C4
+SRP458400 SRR25905142 C3
+SRP458400 SRR25905143 C2
+SRP458400 SRR25905144 C1
+SRP406292 SRR22190732 WS_D22-1
+SRP406292 SRR22190733 WS_D22-2
+SRP406292 SRR22190734 WS_D22-3
+SRP406292 SRR22190735 WW_D22-1
+SRP406292 SRR22190736 WW_D22-2
+SRP406292 SRR22190737 WW_D22-3
+EOM
+
+download_and_rename() {
+    local project=$1
+    local srr=$2
+    local new_name=$3
+    local project_dir="./${project}"
+
+    mkdir -p "$project_dir"
+
+    if fasterq-dump --progress --split-files -O "$project_dir" "$srr"; then
+        gzip "${project_dir}/${srr}_1.fastq"
+        gzip "${project_dir}/${srr}_2.fastq"
+
+        if [[ -f "${project_dir}/${srr}_1.fastq.gz" && -f "${project_dir}/${srr}_2.fastq.gz" ]]; then
+            mv "${project_dir}/${srr}_1.fastq.gz" "${project_dir}/${new_name}_1.fastq.gz"
+            mv "${project_dir}/${srr}_2.fastq.gz" "${project_dir}/${new_name}_2.fastq.gz"
+            echo "OK: ${srr} -> ${new_name}"
+        else
+            echo "ERRO GZIP: ${srr}" >&2
+        fi
+    else
+        echo "ERRO DOWNLOAD: ${srr}" >&2
+    fi
+}
+export -f download_and_rename
+
+echo "$SAMPLES" | grep -v '^$' | parallel -j "$PBS_NCPUS" --colsep ' ' download_and_rename {1} {2} {3}
+
+echo "finalizado em: $(date)"
