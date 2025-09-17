@@ -1,0 +1,10 @@
+Analysis;Total_DEGs;Up_DEGs;Down_DEGs;
+Individual_Study_C;909;482;427;909 (482, 427)
+Individual_Study_B;2783;1044;1739;2783 (1044, 1739)
+Individual_Study_A;571;365;206;571 (365, 206)
+FullMeta_Significant_DEGs;3389;1398;1991;
+Jackknife_Robust_DEGs;472;274;198;
+Common_To_All_Studies_Strict;38;33;5;
+JK_Excl_Study_C_SigMetaDEGs;3005;1242;1763;
+JK_Excl_Study_B_SigMetaDEGs;1302;722;580;
+JK_Excl_Study_A_SigMetaDEGs;3214;1244;1970;
