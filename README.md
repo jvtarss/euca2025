@@ -4,3 +4,4 @@
 
 The repository is organized into two main directories, /scripts and /data, along with a PBS script for data download. The /scripts directory contains all the code required to run the analysis pipeline, from data processing to statistical analysis and figure generation. The scripts are numbered to indicate the order of execution. The /data directory contains the necessary metadata file (sample_metadata.csv) that maps each sample to its respective study and experimental condition. It also includes the final gene lists generated from the analysis. The download-samples.pbs script is a sample job script for downloading the raw SRA data on a high-performance computing (HPC) cluster using the Slurm workload manager.
 
+badge-test
