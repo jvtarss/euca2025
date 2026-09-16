@@ -4,7 +4,8 @@
 
 The repository is organized into two main directories, /scripts and /data, along with a PBS script for data download. The /scripts directory contains all the code required to run the analysis pipeline, from data processing to statistical analysis and figure generation. The scripts are numbered to indicate the order of execution. The /data directory contains the necessary metadata file (sample_metadata.csv) that maps each sample to its respective study and experimental condition. It also includes the final gene lists generated from the analysis. The download-samples.pbs script is a sample job script for downloading the raw SRA data on a high-performance computing (HPC) cluster using the Slurm workload manager.
 
-**Citation**
+## Citation
 
 If you use this pipeline or its outputs, please cite the associated manuscript: 
 Aires-Teixeira, J. V., Lima, N. M. P., Sarmento, R. A., Quintanilha-Peixoto, G., & Oliveira, K. K. P. de. (2026). Bulk RNA-seq datasets analysis integration identifies robust drought-responsive genes and functional networks in Eucalyptus grandis. Frontiers in Bioinformatics, 6. https://doi.org/10.3389/fbinf.2026.1743474. 
+ 
