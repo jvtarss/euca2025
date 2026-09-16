@@ -7,5 +7,6 @@ The repository is organized into two main directories, /scripts and /data, along
 ## Citation
 
 If you use this pipeline or its outputs, please cite the associated manuscript: 
+
 Aires-Teixeira, J. V., Lima, N. M. P., Sarmento, R. A., Quintanilha-Peixoto, G., & Oliveira, K. K. P. de. (2026). Bulk RNA-seq datasets analysis integration identifies robust drought-responsive genes and functional networks in Eucalyptus grandis. Frontiers in Bioinformatics, 6. https://doi.org/10.3389/fbinf.2026.1743474. 
  
